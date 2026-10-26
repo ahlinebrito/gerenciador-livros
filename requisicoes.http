@@ -1,0 +1,60 @@
+### Arquivo para testar a API pelo HTTP Client do IntelliJ IDEA
+### (abra este arquivo e clique no ▶ verde ao lado de cada requisição)
+
+### 1. Cadastrar livro
+POST http://localhost:8080/api/livros
+Content-Type: application/json
+
+{
+  "titulo": "Dom Casmurro",
+  "autor": "Machado de Assis",
+  "genero": "Romance",
+  "anoPublicacao": 1899,
+  "status": "LIDO"
+}
+
+### 1b. Cadastrar outro livro
+POST http://localhost:8080/api/livros
+Content-Type: application/json
+
+{
+  "titulo": "1984",
+  "autor": "George Orwell",
+  "genero": "Distopia",
+  "anoPublicacao": 1949,
+  "status": "LENDO"
+}
+
+### 2. Listar todos
+GET http://localhost:8080/api/livros
+
+### 3. Consultar por id
+GET http://localhost:8080/api/livros/1
+
+### 4. Atualizar
+PUT http://localhost:8080/api/livros/1
+Content-Type: application/json
+
+{
+  "titulo": "Dom Casmurro",
+  "autor": "Machado de Assis",
+  "genero": "Clássico brasileiro",
+  "anoPublicacao": 1899,
+  "status": "LENDO"
+}
+
+### 5. Excluir
+DELETE http://localhost:8080/api/livros/2
+
+### Teste de erro: consultar id inexistente (espera 404)
+GET http://localhost:8080/api/livros/999
+
+### Teste de erro: dados inválidos (espera 400)
+POST http://localhost:8080/api/livros
+Content-Type: application/json
+
+{
+  "titulo": "",
+  "autor": "",
+  "status": "LIDO"
+}
